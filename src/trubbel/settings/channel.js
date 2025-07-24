@@ -14,6 +14,7 @@ import { ClickableModsVIPs } from "../modules/channel/chat/clickable-mods-vips";
 import { PLAYER_ERROR_OVERLAY_SELECTOR } from "../utilities/constants/selectors";
 import { ErrorCodes, ErrorMessages } from "../utilities/constants/types";
 import { notification } from "../utilities/notification";
+import { AbsoluteTimestamps } from "../modules/channel/vods/absolute-timestamps";
 
 const { createElement, ManagedStyle, on, off } = FrankerFaceZ.utilities.dom;
 
@@ -74,6 +75,7 @@ export class Channel extends FrankerFaceZ.utilities.module.Module {
     this.autoSkipMutedSegments = new AutoSkipMutedSegments(this);
     this.raidMessages = new RaidMessages(this);
     this.vodProgressBar = new ProgressBar(this);
+    this.absoluteTimestamps = new AbsoluteTimestamps(this);
     this.clickableModsVIPs = new ClickableModsVIPs(this);
 
     // Chat - Steam - Clickable Steam Inspect Links
@@ -366,6 +368,22 @@ export class Channel extends FrankerFaceZ.utilities.module.Module {
       }
     });
 
+    // Channel - VODs - Enable absolute timestamps
+    this.settings.add("addon.trubbel.channel.vods-absolute_timestamps", {
+      default: false,
+      ui: {
+        sort: 0,
+        path: "Add-Ons > Trubbel\u2019s Utilities > Channel >> VODs - Timestamp",
+        title: "Enable absolute timestamps in video player controls",
+        description: "Display the absolute timestamps in the video player accurate to when the VOD was broadcasting.",
+        component: "setting-check-box"
+      },
+      changed: val => {
+        this.log.info("[Channel] VOD Absolute Timestamps setting changed:", val);
+        this.absoluteTimestamps.handleSettingChange(val);
+      }
+    });
+
     // Channel - VODs - Progress Bar Position
     this.settings.add("addon.trubbel.channel.vods-progress_bar-position", {
       default: "bottom",
@@ -500,6 +518,7 @@ export class Channel extends FrankerFaceZ.utilities.module.Module {
     this.autoSkipMutedSegments.initialize();
     this.raidMessages.initialize();
     this.vodProgressBar.initialize();
+    this.absoluteTimestamps.initialize();
     this.clickableModsVIPs.initialize();
   }
 
@@ -515,6 +534,7 @@ export class Channel extends FrankerFaceZ.utilities.module.Module {
     this.autoSkipMutedSegments.handleNavigation();
     this.raidMessages.handleNavigation();
     this.vodProgressBar.handleNavigation();
+    this.absoluteTimestamps.initialize();
     this.clickableModsVIPs.handleNavigation();
   }
 
