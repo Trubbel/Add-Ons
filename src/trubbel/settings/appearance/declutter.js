@@ -283,23 +283,11 @@ export class Appearance_Declutter extends FrankerFaceZ.utilities.module.Module {
       changed: () => this.declutter.updateCSS()
     });
 
-    // Appearance - Declutter - Stream - Hide monthly recaps below the stream
-    this.settings.add("addon.trubbel.appearance.declutter.stream.monthly_recap", {
-      default: false,
-      ui: {
-        sort: 1,
-        path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
-        title: "Hide monthly recaps below the stream",
-        component: "setting-check-box"
-      },
-      changed: val => this.declutter.toggleHide("hide-stream-monthly-recap", val)
-    });
-
     // Appearance - Declutter - Stream - Hide power-ups within the rewards popup
     this.settings.add("addon.trubbel.appearance.declutter.stream.power_ups", {
       default: false,
       ui: {
-        sort: 2,
+        sort: 1,
         path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
         title: "Hide power-ups within the rewards popup",
         component: "setting-check-box"
@@ -311,7 +299,7 @@ export class Appearance_Declutter extends FrankerFaceZ.utilities.module.Module {
     this.settings.add("addon.trubbel.appearance.declutter.stream.watch_streak", {
       default: false,
       ui: {
-        sort: 3,
+        sort: 2,
         path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
         title: "Hide Watch Streak within the rewards popup",
         component: "setting-check-box"
@@ -323,7 +311,7 @@ export class Appearance_Declutter extends FrankerFaceZ.utilities.module.Module {
     this.settings.add("addon.trubbel.appearance.declutter.stream.ChannelSkinsBanner", {
       default: false,
       ui: {
-        sort: 4,
+        sort: 3,
         path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
         title: "Hide sponsored banner above chat",
         component: "setting-check-box"
@@ -335,7 +323,7 @@ export class Appearance_Declutter extends FrankerFaceZ.utilities.module.Module {
     this.settings.add("addon.trubbel.appearance.declutter.stream.ChannelSkinsOverlay", {
       default: false,
       ui: {
-        sort: 5,
+        sort: 4,
         path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
         title: "Hide sponsored logo within player",
         component: "setting-check-box"
@@ -347,7 +335,7 @@ export class Appearance_Declutter extends FrankerFaceZ.utilities.module.Module {
     this.settings.add("addon.trubbel.appearance.declutter.stream.ChannelSkinsRibbon", {
       default: false,
       ui: {
-        sort: 6,
+        sort: 5,
         path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
         title: "Hide sponsored banner below player",
         component: "setting-check-box"
@@ -359,7 +347,7 @@ export class Appearance_Declutter extends FrankerFaceZ.utilities.module.Module {
     this.settings.add("addon.trubbel.appearance.declutter.stream.sponsored_gradient", {
       default: false,
       ui: {
-        sort: 7,
+        sort: 6,
         path: "Add-Ons > Trubbel\u2019s Utilities > Appearance > Declutter >> Stream",
         title: "Hide sponsored player gradient",
         component: "setting-check-box"
