@@ -6,6 +6,7 @@ export default class Declutter {
     this.style = parent.style;
 
     this.CLASSES = {
+      "hide-celebration-overlays": ".celebration__overlay,.celebration__overlay *,.confetti-layer,.confetti-layer *",
       "hide-input-drops-button": ".chat-input__buttons-container div:has(> div > [data-a-target=\"drops-button\"])",
       "hide-stream-chat-header": ".stream-chat-header,.toggle-visibility__right-column--expanded",
       "hide-following-title": ".common-centered-column:has(section#following-page-main-content) h1.tw-title",
@@ -32,6 +33,7 @@ export default class Declutter {
   }
 
   onEnable() {
+    this.toggleHide("hide-celebration-overlays", this.settings.get("addon.trubbel.appearance.declutter.channel.celebration"));
     this.toggleHide("hide-input-drops-button", this.settings.get("addon.trubbel.appearance.declutter.chat.drops_button"));
     this.toggleHide("hide-stream-chat-header", this.settings.get("addon.trubbel.appearance.declutter.chat.stream_header"));
     this.toggleHide("hide-following-title", this.settings.get("addon.trubbel.appearance.declutter.directory.following_title"));
