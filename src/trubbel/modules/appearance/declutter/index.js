@@ -7,8 +7,10 @@ export default class Declutter {
     this.site = parent.site;
 
     this.CLASSES = {
+      "hide-frontpage-carousel": ".front-page-carousel",
       "hide-celebration-overlays": ".celebration__overlay,.celebration__overlay *,.confetti-layer,.confetti-layer *",
       "hide-input-drops-button": ".chat-input__buttons-container div:has(> div > [data-a-target=\"drops-button\"])",
+      "hide-shared-header-avatar": ".stream-chat-header div:has(> div [class*=\"sharedChatHeaderAvatarSmall\"])",
       "hide-following-title": ".common-centered-column:has(section#following-page-main-content) h1.tw-title",
       "hide-sidebar-for-you": ".side-nav--expanded [aria-label] :is(.side-nav__title):has(h3[class*=\"tw-title\"]:first-child)",
       "hide-sidebar-sort-paragraph": "[data-a-target=\"side-nav-header-expanded\"] p",
@@ -34,8 +36,10 @@ export default class Declutter {
   }
 
   onEnable() {
+    this.toggleHide("hide-frontpage-carousel", this.settings.get("addon.trubbel.appearance.declutter.front-page.carousel"));
     this.toggleHide("hide-celebration-overlays", this.settings.get("addon.trubbel.appearance.declutter.channel.celebration"));
     this.toggleHide("hide-input-drops-button", this.settings.get("addon.trubbel.appearance.declutter.chat.drops_button"));
+    this.toggleHide("hide-shared-header-avatar", this.settings.get("addon.trubbel.appearance.declutter.chat.shared_header.avatars"));
     this.toggleHide("hide-following-title", this.settings.get("addon.trubbel.appearance.declutter.directory.following_title"));
     this.toggleHide("hide-sidebar-for-you", this.settings.get("addon.trubbel.appearance.declutter.sidebar.for_you"));
     this.toggleHide("hide-sidebar-sort-paragraph", this.settings.get("addon.trubbel.appearance.declutter.sidebar.sort_paragraph"));
@@ -58,6 +62,11 @@ export default class Declutter {
     this.toggleHide("hide-vod-muted-segment-popup", this.settings.get("addon.trubbel.appearance.declutter.vods.muted_segment_popup"));
     this.toggleHide("hide-sidebar-sponsored-content", this.settings.get("addon.trubbel.appearance.declutter.sidebar.SideNavPromotedFollowedCardComponent"));
     this.updateCSS();
+
+    // Appearance - Declutter - Carousel - Hide front page carousel
+    this.settings.getChanges("addon.trubbel.appearance.declutter.front-page.carousel", val => {
+      this.loadable.toggle("FeaturedContentCarousel_Available", !val);
+    });
 
     // Appearance - Declutter - Left Navigation - Hide sponsored content
     this.settings.getChanges("addon.trubbel.appearance.declutter.sidebar.SideNavPromotedFollowedCardComponent", val => {
