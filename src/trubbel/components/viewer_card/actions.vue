@@ -532,11 +532,10 @@ export default {
 
       var room = this.room;
       openReportModal(this.getFFZ(), {
-        contentID: String(u.id),
-        contentMetadata: room && room.id ? { channelID: String(room.id) } : {},
-        contentType: 'USER_REPORT',
         targetUserID: String(u.id),
-        trackingContext: 'viewer_card'
+        contentID: null,
+        contentMetadata: room && room.id ? { channelID: String(room.id) } : {},
+        trackingContext: 'chat_viewer_card'
       });
     },
 
